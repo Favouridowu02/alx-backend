@@ -6,7 +6,7 @@
 from typing import Tuple
 
 
-def index_range(page: int = 0, page_size: int = 0) -> tuple[int, int]:
+def index_range(page: int = 0, page_size: int = 0) -> Tuple[int, int]:
     """
         This function returns  a tuple of size two containing a start
         index and an end index corresponding to the range of indexes to
