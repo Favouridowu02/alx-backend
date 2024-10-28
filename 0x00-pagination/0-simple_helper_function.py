@@ -3,6 +3,7 @@
     This Module contains a function `0-simple_helper_function.py`
     The function returns a tuple of the start and end index
 """
+from typing import Tuple
 
 
 def index_range(page: int = 0, page_size: int = 0) -> tuple[int, int]:
