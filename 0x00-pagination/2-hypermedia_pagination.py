@@ -84,7 +84,7 @@ class Server:
 
         index = index_range(page, page_size)
         new_dict = {}
-        new_dict["page_size"] = page_size
+        new_dict["page_size"] = len(self.get_page(page, page_size))
         new_dict["page"] = page
         new_dict["data"] = self.get_page(page, page_size)
         new_dict["next_page"] = page + 1 if index[0] < len(self.__dataset) else None
