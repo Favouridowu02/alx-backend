@@ -2,7 +2,7 @@
 """
     This module contains a function index_range and a class Server
 """
-from typing import Tuple, List
+from typing import Tuple, List, Dict
 import csv
 import math
 
@@ -64,7 +64,7 @@ class Server:
 
         return data[index[0]:index[1]]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """
             This function returns thst a dictioonary containing tne following
 
@@ -83,12 +83,12 @@ class Server:
         assert page > 0 and page_size > 0
 
         index = index_range(page, page_size)
-        new_dict = {}
-        new_dict["page_size"] = len(self.get_page(page, page_size))
-        new_dict["page"] = page
-        new_dict["data"] = self.get_page(page, page_size)
-        new_dict["next_page"] = page + 1 if index[0] < len(self.__dataset) else None
-        new_dict["prev_page"] = page - 1 if index[1] > 0 else None
-        new_dict["total_page"] = math.ceil(len(self.__dataset) / page_size)
-
+        new_dict = {
+                "page_size": len(self.get_page(page, page_size)),
+                "page": page,
+                "data": self.get_page(page, page_size),
+                "next_page": page + 1 if index[0] < len(self.__dataset) else None,
+                "prev_page": page - 1 if index[1] > 0 else None,
+                "total_pages": math.ceil(len(self.__dataset) / page_size)
+        }
         return new_dict
