@@ -30,6 +30,9 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        """
+            This is the class initialization
+        """
         self.__dataset = None
 
     def dataset(self) -> List[List]:
@@ -88,7 +91,7 @@ class Server:
                 "page": page,
                 "data": self.get_page(page, page_size),
                 "next_page": page + 1 if index[0] < len(self.__dataset) else None,
-                "prev_page": page - 1 if index[1] > 0 else None,
+                "prev_page": page - 1 if index[1] > 2 else None,
                 "total_pages": math.ceil(len(self.__dataset) / page_size)
         }
         return new_dict
