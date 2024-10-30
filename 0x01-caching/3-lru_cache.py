@@ -47,7 +47,6 @@ class LRUCache(BaseCaching):
                 del self.lru[0]
             if key not in self.lru:
                 self.lru.append(key)
-            print("\n\n\n", self.lru, "\n\n\n")
 
     def get(self, key=None):
         """
