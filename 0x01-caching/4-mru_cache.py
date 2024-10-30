@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
     This module contains a class that inherits from BaseCaching and is
-    a basic LRUCache - Least Recently used
+    a basic MRUCache - Most Recently used
 """
 from base_caching import BaseCaching
 
@@ -9,7 +9,7 @@ from base_caching import BaseCaching
 class MRUCache(BaseCaching):
     """
         This Class is a basic Caching system that imports from
-        BaseCaching. It uses the Least recently usage Caching approach
+        BaseCaching. It uses the Most recently usage Caching approach
 
         Methods:
             put: this method is used to add a new cache to the cache system
@@ -21,18 +21,11 @@ class MRUCache(BaseCaching):
         """
         super().__init__()
         # this is the least Recent Cache Usage
-        self.lru = []
+        self.mru = []
 
     def put(self, key=None, item=None):
         """
             This Method is used store a data to the cache_data dictionary
-
-            This method uses the Least recently used caching approach.
-            When a new item is added it is appended to the end of the
-            self.lru(Least recently used)
-
-            if the caching storage is full It will use the first element in the
-            self.lru to know which element is the least recently used
 
             Arguments:
                 key: this is the key identifier(Str)
@@ -42,20 +35,15 @@ class MRUCache(BaseCaching):
             self.cache_data[key] = item
             length_data = len(self.cache_data)
             if length_data > BaseCaching.MAX_ITEMS:
-                del self.cache_data[self.lru[-1]]
-                print(f"DISCARD: {self.lru[-1]}")
-                del self.lru[0]
-            if key not in self.lru:
-                self.lru.append(key)
+                del self.cache_data[self.mru[-1]]
+                print(f"DISCARD: {self.mru[-1]}")
+                del self.mru[0]
+            if key not in self.mru:
+                self.mru.append(key)
 
     def get(self, key=None):
         """
             This method is used to get the value of a key from the cache_data
-
-            This method uses the Least recently used algorithm.
-            On trying to get an element It removes it from the `self.lru`
-            because it is not more the Least recently used but not the last
-            Recently used. This is why it is added to the end of the list.
 
             Arguments:
                 key: this is the key identifier(Str)
@@ -64,7 +52,7 @@ class MRUCache(BaseCaching):
         """
 
         value = self.cache_data.get(key)
-        if key in self.lru and len(self.lru) > 1:
-            self.lru.remove(key)
-            self.lru.append(key)
+        if key in self.mru and len(self.mru) > 1:
+            self.mru.remove(key)
+            self.mru.append(key)
         return value
