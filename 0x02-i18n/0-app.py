@@ -9,4 +9,7 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=True)
 def home():
+    """
+        This is the Home page route
+    """
     return render_template('0-index.html')
