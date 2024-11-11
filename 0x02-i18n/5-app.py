@@ -6,6 +6,7 @@ from flask_babel import Babel
 from flask import Flask, render_template, request, g
 from typing import Union, Dict
 
+
 app = Flask(__name__)
 
 users = {
@@ -21,8 +22,11 @@ def get_user() -> Union[Dict, None]:
         This Method is used to get the user
     """
     login_as = request.args.get('login_as')
-    user = users.get(login_as, None)
-    return user
+    print(login_as)
+    if int(login_as) in users.keys():
+        return (users[int(login_as)])
+
+    return None
 
 
 class Config:
@@ -67,4 +71,4 @@ def home() -> str:
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+   app.run(host='0.0.0.0', port=5000, debug=True)
