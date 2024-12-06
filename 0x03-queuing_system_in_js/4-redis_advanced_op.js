@@ -1,4 +1,4 @@
-import { createClient, print } from "redis";
+import { createClient, print } from 'redis';
 
 const client = createClient();
 
@@ -12,10 +12,10 @@ client.hset('ALX', 'Bogota', '20', print);
 client.hset('ALX', 'Cali', '40', print);
 client.hset('ALX', 'Paris', '2', print);
 
-client.hgetall('ALX', function (err, obj) {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log(obj);
-    }
+client.hgetall('ALX', (err, obj) => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(obj);
+  }
 });
