@@ -7,7 +7,7 @@ const objData = {
 
 const push_notification_code = createQueue();
 
-const job = push_notification_code.create('job', objData);
+const job = push_notification_code.create('push_notification_code', objData);
 
 job.save((err) => {
   if (err) {
@@ -15,6 +15,6 @@ job.save((err) => {
   } else {
     console.log(`Notification job created: ${job.id}`);
   }
-});
+})
 
 job.on('complete', () => console.log('Notification job completed')).on('failed', () => console.log('Notification job created'));
